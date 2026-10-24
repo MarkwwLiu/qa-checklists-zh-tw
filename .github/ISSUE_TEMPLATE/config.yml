@@ -1,0 +1,6 @@
+# 清單內容的補充、想加一題、想加一個情境 → 直接開空白 issue 就好
+blank_issues_enabled: true
+contact_links:
+  - name: QA 長文（Spec Review / Bug Report / Test Case）
+    url: https://9niche.com/guide/
+    about: 清單背後的完整說明、案例與更多 QA 主題

@@ -1,0 +1,130 @@
+name: Bug Report
+description: 回報一個 bug（照 8 欄位 SOP 填，開發 30 秒能看懂）
+title: "[模組] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        標題請用這個公式：`[模組] <行為>，<前提下> 應該 <預期> 但 <實際>`
+
+        例：`[Checkout] iOS Safari 17 上連點「確認付款」會重複建立訂單`
+
+        欄位說明見 [Bug Report SOP](../../bug-report/README.md)。
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: 寫死，不要寫泛指。交給沒碰過產品的人要能跑出同樣結果。帳號、商品 ID、測試卡號都要寫出來。
+      placeholder: |
+        1. 用瀏覽器開 https://staging.example.com
+        2. 登入 qa-test-007@example.com / Test@123456
+        3. 加入「商品 A (sku-001)」到購物車
+        4. 進入結帳頁，選「信用卡」
+        5. 輸入測試卡 4111 1111 1111 1111 / 12/30 / 123
+        6. 在「確認付款」快速連點兩次（間距 < 1 秒）
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Result
+      description: 應該發生什麼。一條一行。
+      placeholder: |
+        - 第二次點擊應被忽略（按鈕應 disable 或顯示 loading）
+        - 只建立 1 筆訂單
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Result
+      description: 實際發生什麼。盡量跟 Expected 條數對齊。
+      placeholder: |
+        - 兩次點擊都被接受
+        - 建立 2 筆相同訂單（order #12345 + #12346）
+        - 信用卡被扣款兩次
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: 「我這邊 OK」多半是環境不同造成的。build number 或 commit hash 請務必填。
+      value: |
+        - OS:
+        - Device:
+        - Browser:
+        - App version:
+        - Backend (commit):
+        - Account:
+        - Network:
+        - 時間:
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity（對使用者的傷害）
+      options:
+        - S1 Critical — 系統當機、資料遺失、安全漏洞
+        - S2 High — 主要功能無法使用
+        - S3 Medium — 次要功能異常、有 workaround
+        - S4 Low — UI 小瑕疵、文案錯字
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority（修復急迫度）
+      description: 跟 Severity 不一定一致。S1 但極少觸發可能是 P1，S4 但影響 brand 可能是 P0。
+      options:
+        - P0 Now — 阻擋發版
+        - P1 This sprint
+        - P2 Next sprint
+        - P3 Backlog
+    validations:
+      required: true
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Attachments
+      description: Video 能解掉大約一半的「無法重現」退回。至少附 console log。
+      placeholder: |
+        - 影片重現：https://loom.com/share/xxx（15 秒）
+        - Network HAR：（拖進來）
+        - Console log：（貼上）
+        - Screenshot：（拖進來）
+    validations:
+      required: true
+
+  - type: textarea
+    id: related
+    attributes:
+      label: Related
+      description: 相關 PR、之前的 bug、spec 連結、暫時 workaround。
+      placeholder: |
+        - 類似 bug：#3421（Android Chrome）
+        - 相關 spec：https://confluence.example.com/checkout-double-click
+        - 暫時 workaround：使用者刷新頁面、客服手動退款一筆
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 送出前自己檢查
+      options:
+        - label: 這份 report 只講一個 bug
+          required: true
+        - label: Steps 裡的帳號 / 資料都寫死，可以 copy-paste
+          required: true
+        - label: Environment 有 build number 或 commit hash
+          required: true
