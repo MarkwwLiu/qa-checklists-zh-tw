@@ -69,7 +69,9 @@ curl -o .github/ISSUE_TEMPLATE/bug_report.yml \
 
 ## 相關工具
 
-<!-- TODO: 壓測工具連結 -->
+- [9niche / Locust 壓力測試框架](https://github.com/MarkwwLiu/9niche) — 寫 YAML 就能跑壓測，不用寫 Python。支援請求鏈、認證刷新、CSV/JSON 資料來源、JSON 報告與 Webhook。
+
+這份清單負責「上線前把問題問出來」，那個框架負責「上線前把負載壓出來」。
 
 ## 關於作者
 
